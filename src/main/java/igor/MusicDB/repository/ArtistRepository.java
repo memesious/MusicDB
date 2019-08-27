@@ -1,5 +1,8 @@
 package igor.MusicDB.repository;
 
-public interface ArtistRepository {
+import igor.MusicDB.entity.ArtistEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ArtistRepository extends JpaRepository<ArtistEntity, Long> {
 
 }
