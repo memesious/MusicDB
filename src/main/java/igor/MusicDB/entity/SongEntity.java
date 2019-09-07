@@ -3,6 +3,7 @@ package igor.MusicDB.entity;
 import igor.MusicDB.dto.SongDto;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,5 +52,25 @@ public class SongEntity {
       joinColumns = @JoinColumn(name = "song_id"),
       inverseJoinColumns = @JoinColumn(name = "album_id"))
   List<AlbumEntity> albumEntityList;
+
+  public SongDto toDto () {
+    return SongDto.builder()
+        .id(id)
+        .name(name)
+        .lyrics(lyrics)
+
+        .albumId(albumEntityList.stream()
+            .map(AlbumEntity::getId)
+            .collect(Collectors.toList()))
+
+        .artistId(artistEntityList.stream()
+            .map(ArtistEntity::getId)
+            .collect(Collectors.toList()))
+
+        .build();
+
+
+
+  }
 
 }
