@@ -17,6 +17,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.ToString.Exclude;
 
 @Data
 @Builder
@@ -24,6 +26,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "song")
+//@ToString(exclude = {"albumEntityList"})
+
 public class SongEntity {
 
   @Id
@@ -45,7 +49,6 @@ public class SongEntity {
       joinColumns = @JoinColumn(name = "song_id"),
       inverseJoinColumns = @JoinColumn(name = "artist_id"))
   List<ArtistEntity> artistEntityList;
-
   @ManyToMany
   @JoinTable(
       name = "album_jt",

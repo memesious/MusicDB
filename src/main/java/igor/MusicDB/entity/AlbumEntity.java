@@ -1,5 +1,6 @@
 package igor.MusicDB.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
@@ -32,6 +33,7 @@ public class AlbumEntity {
   @Column(name = "year")
   private Integer year;
 
+  @JsonIgnoreProperties("albumEntityList")
   @ManyToMany(mappedBy = "albumEntityList")
   List<SongEntity> songEntityList;
 
