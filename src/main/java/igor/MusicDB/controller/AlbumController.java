@@ -1,9 +1,9 @@
 package igor.MusicDB.controller;
 
-import igor.MusicDB.dto.SongDto;
+
+import igor.MusicDB.dto.AlbumDto;
 import igor.MusicDB.entity.AlbumEntity;
 import igor.MusicDB.service.AlbumService;
-import igor.MusicDB.service.SongService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,27 +16,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/songs")
-public class SongController {
+@RequestMapping("/albums")
 
-  private final SongService songService;
+public class AlbumController {
+
+  private final AlbumService albumService;
+
+  @GetMapping
+  public List<AlbumDto> getAllEntities() {
+    return albumService.getAll();
+  }
 
   @PostMapping("/add")
-  public void add(@RequestBody SongDto song) {
-    songService.save(song);
+  public void add(@RequestBody AlbumDto album) {
+    albumService.save(album);
   }
 
   @DeleteMapping("/delete/{id}")
   public void delete(@PathVariable Long id) {
-    songService.delete(id);
+    albumService.delete(id);
   }
-
-  @GetMapping
-  public List<SongDto> getAll() {
-    return songService.getAll();
-  }
-
-
 }
-
-

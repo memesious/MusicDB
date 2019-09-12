@@ -1,5 +1,6 @@
 package igor.MusicDB.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import igor.MusicDB.dto.SongDto;
 import java.util.List;
 import java.util.Set;
@@ -43,12 +44,15 @@ public class SongEntity {
   @Column(name = "lyrics")
   private String lyrics;
 
+  @JsonIgnoreProperties("songEntity")
   @ManyToMany
   @JoinTable(
       name = "artist_jt",
       joinColumns = @JoinColumn(name = "song_id"),
       inverseJoinColumns = @JoinColumn(name = "artist_id"))
   List<ArtistEntity> artistEntityList;
+
+  @JsonIgnoreProperties("songEntityList")
   @ManyToMany
   @JoinTable(
       name = "album_jt",

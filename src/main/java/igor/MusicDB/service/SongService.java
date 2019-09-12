@@ -25,6 +25,7 @@ public class SongService {
         .lyrics(dto.getLyrics())
         .albumEntityList(albumRepository.findAllById(dto.getAlbumId()))
         .artistEntityList(artistRepository.findAllById(dto.getArtistId()))
+        .year(dto.getYear())
         .build();
   }
 
@@ -37,4 +38,6 @@ public class SongService {
         .map(SongEntity::toDto)
         .collect(Collectors.toList());
   }
+  public void delete(Long id){songRepository.deleteById(id);}
 }
+

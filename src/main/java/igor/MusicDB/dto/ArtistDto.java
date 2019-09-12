@@ -1,5 +1,17 @@
 package igor.MusicDB.dto;
 
-public class ArtistDto {
+import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ArtistDto {
+  private Long id;
+  private String name;
+  private List<Long> songIdList;
 }
